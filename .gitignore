@@ -1,0 +1,9 @@
+# Only the pipeline code is versioned. The organisers' dataset, its zip and the
+# generated parquet files (work/) stay on each laptop.
+/*
+!/.gitignore
+!/README.md
+!/code/
+
+__pycache__/
+*.pyc

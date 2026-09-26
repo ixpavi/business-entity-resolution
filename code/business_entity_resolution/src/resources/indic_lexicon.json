@@ -1,0 +1,1753 @@
+{
+ "about": "romanised Indic token -> English token, learned from train_ground_truth.tsv pairs by src/build_lexicon.py",
+ "params": {
+  "min_count": 3,
+  "min_share": 0.6
+ },
+ "lexicon": {
+  "aditia": "aditya",
+  "adity": "aditya",
+  "aigaro": "agro",
+  "aikasaporatas": "exports",
+  "ailailapi": "llp",
+  "ainaraji": "energy",
+  "aintarapraijij": "enterprises",
+  "aisais": "ss",
+  "aiti": "it",
+  "akro": "agro",
+  "al": "all",
+  "alapha": "alpha",
+  "alhpa": "alpha",
+  "alph": "alpha",
+  "anant": "anand",
+  "apeks": "apex",
+  "araban": "urban",
+  "arban": "urban",
+  "arpan": "urban",
+  "arrban": "urban",
+  "atitya": "aditya",
+  "ayagro": "agro",
+  "ayapeks": "apex",
+  "bab": "baba",
+  "baisat": "best",
+  "balaik": "black",
+  "balu": "blue",
+  "bambe": "bombay",
+  "banbe": "bombay",
+  "baunbe": "bombay",
+  "besht": "best",
+  "besrr": "best",
+  "bhenycaras": "ventures",
+  "bhenycars": "ventures",
+  "bhijan": "vision",
+  "bhishan": "vision",
+  "bijanas": "business",
+  "bijanes": "business",
+  "bijay": "vijay",
+  "bijhanes": "business",
+  "bijines": "business",
+  "biladaraj": "builders",
+  "biladars": "builders",
+  "bildars": "builders",
+  "bildels": "builders",
+  "bisinas": "business",
+  "bisines": "business",
+  "blaik": "black",
+  "blak": "black",
+  "blakk": "black",
+  "blek": "black",
+  "blu": "blue",
+  "blyak": "black",
+  "bombe": "bombay",
+  "bonbe": "bombay",
+  "brairr": "bright",
+  "brait": "bright",
+  "cahptver": "software",
+  "cakti": "shakti",
+  "can": "sun",
+  "canrais": "sunrise",
+  "carvicas": "services",
+  "catarn": "southern",
+  "cavut": "south",
+  "cay": "sai",
+  "cevan": "seven",
+  "cilvar": "silver",
+  "cistams": "systems",
+  "citti": "city",
+  "civ": "shiv",
+  "civa": "shiva",
+  "civam": "shivam",
+  "colyushans": "solutions",
+  "cuppar": "super",
+  "cuprim": "supreme",
+  "curya": "surya",
+  "dainamik": "dynamic",
+  "dayanamik": "dynamic",
+  "dayanemik": "dynamic",
+  "debhalapars": "developers",
+  "debhelaparas": "developers",
+  "devalapars": "developers",
+  "devalappels": "developers",
+  "dijirral": "digital",
+  "dijital": "digital",
+  "divailaparaj": "developers",
+  "drim": "dream",
+  "drin": "dream",
+  "egro": "agro",
+  "eis": "ace",
+  "eksaportas": "exports",
+  "eksaports": "exports",
+  "eksporrts": "exports",
+  "eksports": "exports",
+  "elaelapi": "llp",
+  "elelpi": "llp",
+  "enarji": "energy",
+  "enarrji": "energy",
+  "enjiniyaring": "engineering",
+  "enrarrpraisas": "enterprises",
+  "entarapraijej": "enterprises",
+  "entarapraijes": "enterprises",
+  "entarapraijhis": "enterprises",
+  "entarpiraicas": "enterprises",
+  "epaikas": "apex",
+  "epeks": "apex",
+  "es": "ace",
+  "esaes": "ss",
+  "eses": "ss",
+  "eshtet": "estate",
+  "esrrerr": "estate",
+  "estet": "estate",
+  "eys": "ace",
+  "gaileksi": "galaxy",
+  "galaikasi": "galaxy",
+  "galaksi": "galaxy",
+  "galobal": "global",
+  "gelaksi": "galaxy",
+  "geleksi": "galaxy",
+  "golad": "gold",
+  "goladan": "golden",
+  "goladen": "golden",
+  "goldan": "golden",
+  "golld": "gold",
+  "golldan": "golden",
+  "grerr": "great",
+  "gret": "great",
+  "grin": "green",
+  "gud": "good",
+  "gujaratt": "gujarat",
+  "gyalaksi": "galaxy",
+  "hai": "high",
+  "hailathakear": "healthcare",
+  "haitaik": "hitech",
+  "haitek": "hitech",
+  "hasapitailiti": "hospitality",
+  "hasapitaliti": "hospitality",
+  "haspitaliti": "hospitality",
+  "haspitalitti": "hospitality",
+  "helathakeyar": "healthcare",
+  "helthaker": "healthcare",
+  "helthakeyar": "healthcare",
+  "heltker": "healthcare",
+  "hospirralirri": "hospitality",
+  "hospitailiti": "hospitality",
+  "hospitaliti": "hospitality",
+  "hotal": "hotel",
+  "hottal": "hotel",
+  "hoyait": "white",
+  "hpainans": "finance",
+  "hparccun": "fortune",
+  "hparst": "first",
+  "hpavunteshan": "foundation",
+  "hpiyuccar": "future",
+  "hput": "food",
+  "hputs": "foods",
+  "hvait": "white",
+  "impeks": "impex",
+  "inabheshtament": "investment",
+  "inabheshtamentas": "investments",
+  "inabhestament": "investment",
+  "inabhestamentas": "investments",
+  "inaphotaik": "infotech",
+  "inaphotek": "infotech",
+  "inaphra": "infra",
+  "inaphrasatrakacar": "infrastructure",
+  "inaphrashtrakacar": "infrastructure",
+  "inaphrastrakacar": "infrastructure",
+  "inavaisatamaint": "investment",
+  "inavaisatamaintas": "investments",
+  "indasatrij": "industries",
+  "indashtrij": "industries",
+  "indastrij": "industries",
+  "indastrijh": "industries",
+  "indastris": "industries",
+  "indiyan": "indian",
+  "inhpotek": "infotech",
+  "inhpra": "infra",
+  "inhprastrakcar": "infrastructure",
+  "injaniring": "engineering",
+  "injiniaring": "engineering",
+  "injiniyaring": "engineering",
+  "innoverriv": "innovative",
+  "innovetiv": "innovative",
+  "innovettiv": "innovative",
+  "inobhetibh": "innovative",
+  "inovetiv": "innovative",
+  "inpaikas": "impex",
+  "inpeks": "impex",
+  "inphotek": "infotech",
+  "inphr": "infra",
+  "inphra": "infra",
+  "inphrastrakcar": "infrastructure",
+  "inphrastrakcarr": "infrastructure",
+  "inrarrnashanal": "international",
+  "intaranaisanal": "international",
+  "intaraneshanal": "international",
+  "intaranyasanal": "international",
+  "intaranyashanal": "international",
+  "intarneshanal": "international",
+  "intastris": "industries",
+  "intiyan": "indian",
+  "into": "indo",
+  "intyan": "indian",
+  "invesrrmenr": "investment",
+  "invesrrmenrs": "investments",
+  "investament": "investment",
+  "investaments": "investments",
+  "inyjiniyarin": "engineering",
+  "isat": "east",
+  "isataran": "eastern",
+  "isatet": "estate",
+  "isht": "east",
+  "ishtarn": "eastern",
+  "isrr": "east",
+  "isrrenn": "eastern",
+  "ist": "east",
+  "istarn": "eastern",
+  "iunaited": "united",
+  "iunibharsal": "universal",
+  "iunik": "unique",
+  "jai": "jay",
+  "jay": "jai",
+  "je": "jay",
+  "kalasik": "classic",
+  "kanasalatansi": "consultancy",
+  "kanasalatantas": "consultants",
+  "kanasalatensi": "consultancy",
+  "kanasalatin": "consulting",
+  "kanasalatyantas": "consultants",
+  "kanasaltin": "consulting",
+  "kanashtrakasan": "construction",
+  "kanashtrakasans": "constructions",
+  "kanastrakashan": "construction",
+  "kanastrakashanas": "constructions",
+  "kancaltanci": "consultancy",
+  "kancaltants": "consultants",
+  "kancalting": "consulting",
+  "kannsallttanrs": "consultants",
+  "kannsallttansi": "consultancy",
+  "kannsalltting": "consulting",
+  "kannstrakshan": "construction",
+  "kannstrakshans": "constructions",
+  "kansalatainsi": "consultancy",
+  "kansalataintas": "consultants",
+  "kansalating": "consulting",
+  "kansaltansi": "consultancy",
+  "kansaltants": "consultants",
+  "kansaltensi": "consultancy",
+  "kansaltents": "consultants",
+  "kansalting": "consulting",
+  "kansatrakasan": "construction",
+  "kansatrakasanaj": "constructions",
+  "kanstrakshan": "construction",
+  "kanstrakshans": "constructions",
+  "kear": "care",
+  "kelaksi": "galaxy",
+  "ker": "care",
+  "keyar": "care",
+  "keyarr": "care",
+  "kilacik": "classic",
+  "kiret": "great",
+  "kirin": "green",
+  "kiriyettiv": "creative",
+  "kirushna": "krishna",
+  "klasik": "classic",
+  "koltan": "golden",
+  "koltu": "gold",
+  "krietibh": "creative",
+  "krietiv": "creative",
+  "krisana": "krishna",
+  "krishn": "krishna",
+  "kriyerriv": "creative",
+  "kriyetibh": "creative",
+  "kriyetiv": "creative",
+  "kujarat": "gujarat",
+  "kulopal": "global",
+  "kuru": "guru",
+  "kut": "good",
+  "laihp": "life",
+  "laiph": "life",
+  "lajishtiks": "logistics",
+  "lajistikas": "logistics",
+  "lajistiks": "logistics",
+  "lakshmi": "laxmi",
+  "latcumi": "lakshmi",
+  "laujisatikas": "logistics",
+  "limatid": "ltd",
+  "limirrad": "ltd",
+  "lojisrriks": "logistics",
+  "lojistiks": "logistics",
+  "lotas": "lotus",
+  "lottas": "lotus",
+  "ma": "maa",
+  "madaran": "modern",
+  "madarn": "modern",
+  "mai": "my",
+  "mainejamaint": "management",
+  "mainejament": "management",
+  "man": "maa",
+  "manejmenr": "management",
+  "marakiting": "marketing",
+  "marketin": "marketing",
+  "markketting": "marketing",
+  "marrkkarring": "marketing",
+  "matarn": "modern",
+  "may": "my",
+  "menejament": "management",
+  "menejment": "management",
+  "midia": "media",
+  "midiy": "media",
+  "midiya": "media",
+  "mitiya": "media",
+  "modarn": "modern",
+  "modenn": "modern",
+  "myanejament": "management",
+  "narath": "north",
+  "nart": "north",
+  "narth": "north",
+  "naurath": "north",
+  "niu": "new",
+  "niyu": "new",
+  "norrtt": "north",
+  "nyu": "new",
+  "ol": "all",
+  "oll": "all",
+  "oyan": "one",
+  "painiar": "pioneer",
+  "palaji": "balaji",
+  "pampay": "bombay",
+  "paoyar": "power",
+  "papa": "baba",
+  "paraphaikat": "perfect",
+  "paraphekt": "perfect",
+  "parat": "bharat",
+  "parhpekt": "perfect",
+  "parphekt": "perfect",
+  "pavar": "power",
+  "pavarr": "power",
+  "payanir": "pioneer",
+  "payaniyar": "pioneer",
+  "payaniyarr": "pioneer",
+  "payonir": "pioneer",
+  "payoniyar": "pioneer",
+  "perrphekrr": "perfect",
+  "pest": "best",
+  "phainains": "finance",
+  "phainans": "finance",
+  "phainens": "finance",
+  "phainyans": "finance",
+  "phanteshan": "foundation",
+  "pharacun": "fortune",
+  "pharasat": "first",
+  "pharcun": "fortune",
+  "pharsht": "first",
+  "pharst": "first",
+  "phasat": "first",
+  "phasrr": "first",
+  "phast": "first",
+  "phaundesan": "foundation",
+  "phaundeshan": "foundation",
+  "phinans": "finance",
+  "phiucar": "future",
+  "phorcyun": "fortune",
+  "phorrcyunn": "fortune",
+  "phud": "food",
+  "phudaj": "foods",
+  "phudas": "foods",
+  "phuds": "foods",
+  "phyucar": "future",
+  "phyuccarr": "future",
+  "picinas": "business",
+  "pik": "big",
+  "pilak": "black",
+  "piltars": "builders",
+  "piraim": "prime",
+  "pirait": "bright",
+  "piraivet": "pvt",
+  "pirimiyar": "premier",
+  "pradiusar": "producer",
+  "praim": "prime",
+  "prain": "prime",
+  "praivarr": "pvt",
+  "prajektas": "projects",
+  "prajekts": "projects",
+  "prapartij": "properties",
+  "prapartis": "properties",
+  "primiar": "premier",
+  "primiyar": "premier",
+  "primiyarr": "premier",
+  "prodakatas": "products",
+  "prodaktas": "products",
+  "prodakts": "products",
+  "prodiusar": "producer",
+  "prodyusar": "producer",
+  "prodyusarr": "producer",
+  "projaikatas": "projects",
+  "projakts": "projects",
+  "projektas": "projects",
+  "projekts": "projects",
+  "proparatij": "properties",
+  "propartij": "properties",
+  "propartijh": "properties",
+  "propparrttis": "properties",
+  "pulu": "blue",
+  "purajekts": "projects",
+  "purapparttis": "properties",
+  "puratakts": "products",
+  "purotyucar": "producer",
+  "raid": "red",
+  "rail": "royal",
+  "ran": "ram",
+  "rauil": "royal",
+  "rayal": "royal",
+  "rayyal": "royal",
+  "ret": "red",
+  "rial": "real",
+  "riyal": "real",
+  "riyel": "real",
+  "sadaran": "southern",
+  "sadarn": "southern",
+  "sadharn": "southern",
+  "sain": "sai",
+  "saivan": "seven",
+  "sakai": "sky",
+  "sakati": "shakti",
+  "saliushanas": "solutions",
+  "salyusans": "solutions",
+  "samarat": "smart",
+  "san": "sun",
+  "sanaraij": "sunrise",
+  "sanaraijh": "sunrise",
+  "sani": "sai",
+  "sann": "sun",
+  "sannrais": "sunrise",
+  "saphataoyyar": "software",
+  "saphatavear": "software",
+  "saphtaveyar": "software",
+  "saravisij": "services",
+  "sarbhises": "services",
+  "sarrvisas": "services",
+  "sarvisas": "services",
+  "sarvisej": "services",
+  "sarvises": "services",
+  "sarvisis": "services",
+  "satar": "star",
+  "satenn": "southern",
+  "satt": "south",
+  "saudarn": "southern",
+  "saut": "south",
+  "sauth": "south",
+  "sautharn": "southern",
+  "savasatik": "swastik",
+  "say": "sai",
+  "sayi": "sai",
+  "sbastik": "swastik",
+  "sebhen": "seven",
+  "sevan": "seven",
+  "shibam": "shivam",
+  "shiv": "shiva",
+  "shivan": "shivam",
+  "shtar": "star",
+  "shyan": "shyam",
+  "siam": "shyam",
+  "silabhar": "silver",
+  "silavar": "silver",
+  "silvar": "silver",
+  "silvarr": "silver",
+  "sirri": "city",
+  "sisatamaj": "systems",
+  "sishtamas": "systems",
+  "sisrrans": "systems",
+  "sistams": "systems",
+  "sistemas": "systems",
+  "siti": "city",
+  "siv": "shiv",
+  "siva": "shiva",
+  "sivam": "shivam",
+  "skai": "sky",
+  "skay": "sky",
+  "smarrtt": "smart",
+  "soliusanaj": "solutions",
+  "solyushans": "solutions",
+  "sophtaver": "software",
+  "sophtaveyar": "software",
+  "srrarr": "star",
+  "supar": "super",
+  "suparim": "supreme",
+  "supparr": "super",
+  "suprim": "supreme",
+  "suprin": "supreme",
+  "suraj": "surya",
+  "suria": "surya",
+  "sury": "surya",
+  "suryy": "surya",
+  "svastik": "swastik",
+  "taik": "tech",
+  "taikanaloji": "technology",
+  "taikanalojij": "technologies",
+  "tainamik": "dynamic",
+  "tek": "tech",
+  "tekanolaji": "technology",
+  "tekanolajis": "technologies",
+  "teknalaji": "technology",
+  "teknalajis": "technologies",
+  "teknolaji": "technology",
+  "teknolajis": "technologies",
+  "teknoloji": "technology",
+  "teknolojij": "technologies",
+  "teknolojis": "technologies",
+  "tevalappars": "developers",
+  "tijittal": "digital",
+  "tireting": "trading",
+  "tirim": "dream",
+  "tiruppati": "tirupati",
+  "tredin": "trading",
+  "treding": "trading",
+  "vaincaraj": "ventures",
+  "vairr": "white",
+  "vait": "white",
+  "van": "one",
+  "vann": "one",
+  "vencars": "ventures",
+  "venccars": "ventures",
+  "venycels": "ventures",
+  "vhait": "white",
+  "vijai": "vijay",
+  "vijan": "vision",
+  "vijhan": "vision",
+  "vishan": "vision",
+  "voyit": "white",
+  "yunairrad": "united",
+  "yunaited": "united",
+  "yunaitet": "united",
+  "yunaitid": "united",
+  "yunibharsal": "universal",
+  "yunik": "unique",
+  "yunikk": "unique",
+  "yunivarasal": "universal",
+  "yunivarcal": "universal",
+  "yunivarsal": "universal",
+  "yunivelsal": "universal"
+ },
+ "top_entries": [
+  [
+   "piraivet",
+   "pvt",
+   28554,
+   1.0
+  ],
+  [
+   "limirrad",
+   "ltd",
+   17673,
+   1.0
+  ],
+  [
+   "elaelapi",
+   "llp",
+   16860,
+   1.0
+  ],
+  [
+   "tek",
+   "tech",
+   16272,
+   1.0
+  ],
+  [
+   "praivarr",
+   "pvt",
+   15551,
+   1.0
+  ],
+  [
+   "aiti",
+   "it",
+   10830,
+   1.0
+  ],
+  [
+   "intaraneshanal",
+   "international",
+   10546,
+   1.0
+  ],
+  [
+   "enarji",
+   "energy",
+   10230,
+   1.0
+  ],
+  [
+   "estet",
+   "estate",
+   9849,
+   1.0
+  ],
+  [
+   "pavar",
+   "power",
+   9692,
+   1.0
+  ],
+  [
+   "phud",
+   "food",
+   9630,
+   1.0
+  ],
+  [
+   "bildars",
+   "builders",
+   9262,
+   1.0
+  ],
+  [
+   "phaundeshan",
+   "foundation",
+   9188,
+   1.0
+  ],
+  [
+   "treding",
+   "trading",
+   9081,
+   1.0
+  ],
+  [
+   "phuds",
+   "foods",
+   8984,
+   1.0
+  ],
+  [
+   "prodakts",
+   "products",
+   8909,
+   1.0
+  ],
+  [
+   "prodyusar",
+   "producer",
+   8811,
+   1.0
+  ],
+  [
+   "midiya",
+   "media",
+   8808,
+   1.0
+  ],
+  [
+   "solyushans",
+   "solutions",
+   8686,
+   1.0
+  ],
+  [
+   "kansalting",
+   "consulting",
+   8642,
+   1.0
+  ],
+  [
+   "impeks",
+   "impex",
+   8518,
+   1.0
+  ],
+  [
+   "devalapars",
+   "developers",
+   8499,
+   1.0
+  ],
+  [
+   "sistams",
+   "systems",
+   8424,
+   1.0
+  ],
+  [
+   "vencars",
+   "ventures",
+   8333,
+   1.0
+  ],
+  [
+   "inphotek",
+   "infotech",
+   8071,
+   1.0
+  ],
+  [
+   "injiniyaring",
+   "engineering",
+   7863,
+   1.0
+  ],
+  [
+   "kansaltents",
+   "consultants",
+   7848,
+   1.0
+  ],
+  [
+   "kansaltensi",
+   "consultancy",
+   7783,
+   1.0
+  ],
+  [
+   "kanstrakshans",
+   "constructions",
+   7564,
+   1.0
+  ],
+  [
+   "kanstrakshan",
+   "construction",
+   7550,
+   1.0
+  ],
+  [
+   "bijanes",
+   "business",
+   7124,
+   1.0
+  ],
+  [
+   "inphrastrakcar",
+   "infrastructure",
+   7112,
+   1.0
+  ],
+  [
+   "indastrij",
+   "industries",
+   6915,
+   1.0
+  ],
+  [
+   "teknoloji",
+   "technology",
+   6906,
+   1.0
+  ],
+  [
+   "keyar",
+   "care",
+   6840,
+   1.0
+  ],
+  [
+   "inphra",
+   "infra",
+   6838,
+   1.0
+  ],
+  [
+   "projekts",
+   "projects",
+   6806,
+   1.0
+  ],
+  [
+   "eksaports",
+   "exports",
+   6788,
+   1.0
+  ],
+  [
+   "egro",
+   "agro",
+   6766,
+   1.0
+  ],
+  [
+   "investament",
+   "investment",
+   6750,
+   1.0
+  ],
+  [
+   "lojistiks",
+   "logistics",
+   6720,
+   1.0
+  ],
+  [
+   "investaments",
+   "investments",
+   6524,
+   1.0
+  ],
+  [
+   "mainejament",
+   "management",
+   6226,
+   1.0
+  ],
+  [
+   "helthakeyar",
+   "healthcare",
+   6217,
+   1.0
+  ],
+  [
+   "propartij",
+   "properties",
+   6202,
+   1.0
+  ],
+  [
+   "sophtaveyar",
+   "software",
+   6170,
+   1.0
+  ],
+  [
+   "phainens",
+   "finance",
+   6141,
+   1.0
+  ],
+  [
+   "hospitailiti",
+   "hospitality",
+   6107,
+   1.0
+  ],
+  [
+   "sarvisej",
+   "services",
+   6102,
+   1.0
+  ],
+  [
+   "entarapraijej",
+   "enterprises",
+   6075,
+   1.0
+  ],
+  [
+   "hai",
+   "high",
+   6050,
+   1.0
+  ],
+  [
+   "teknolojij",
+   "technologies",
+   6036,
+   1.0
+  ],
+  [
+   "lakshmi",
+   "laxmi",
+   5732,
+   1.0
+  ],
+  [
+   "ist",
+   "east",
+   5617,
+   1.0
+  ],
+  [
+   "laiph",
+   "life",
+   5593,
+   1.0
+  ],
+  [
+   "haitek",
+   "hitech",
+   5588,
+   1.0
+  ],
+  [
+   "klasik",
+   "classic",
+   5546,
+   1.0
+  ],
+  [
+   "blu",
+   "blue",
+   5456,
+   1.0
+  ],
+  [
+   "istarn",
+   "eastern",
+   5432,
+   1.0
+  ],
+  [
+   "limatid",
+   "ltd",
+   5409,
+   1.0
+  ],
+  [
+   "es",
+   "ace",
+   5363,
+   0.926
+  ],
+  [
+   "adity",
+   "aditya",
+   5303,
+   1.0
+  ],
+  [
+   "supar",
+   "super",
+   5293,
+   1.0
+  ],
+  [
+   "riyal",
+   "real",
+   5291,
+   1.0
+  ],
+  [
+   "yunik",
+   "unique",
+   5288,
+   1.0
+  ],
+  [
+   "gud",
+   "good",
+   5261,
+   1.0
+  ],
+  [
+   "svastik",
+   "swastik",
+   5257,
+   1.0
+  ],
+  [
+   "skai",
+   "sky",
+   5240,
+   1.0
+  ],
+  [
+   "grin",
+   "green",
+   5234,
+   1.0
+  ],
+  [
+   "siti",
+   "city",
+   5226,
+   1.0
+  ],
+  [
+   "san",
+   "sun",
+   5185,
+   1.0
+  ],
+  [
+   "lotas",
+   "lotus",
+   5164,
+   1.0
+  ],
+  [
+   "dijital",
+   "digital",
+   5152,
+   1.0
+  ],
+  [
+   "praim",
+   "prime",
+   5132,
+   1.0
+  ],
+  [
+   "drim",
+   "dream",
+   5128,
+   1.0
+  ],
+  [
+   "primiyar",
+   "premier",
+   5040,
+   1.0
+  ],
+  [
+   "brait",
+   "bright",
+   5030,
+   1.0
+  ],
+  [
+   "gret",
+   "great",
+   4997,
+   1.0
+  ],
+  [
+   "indiyan",
+   "indian",
+   4983,
+   1.0
+  ],
+  [
+   "suprim",
+   "supreme",
+   4881,
+   1.0
+  ],
+  [
+   "nyu",
+   "new",
+   4799,
+   1.0
+  ],
+  [
+   "phyucar",
+   "future",
+   4747,
+   1.0
+  ],
+  [
+   "arban",
+   "urban",
+   4597,
+   1.0
+  ],
+  [
+   "silvar",
+   "silver",
+   4591,
+   1.0
+  ],
+  [
+   "yunivarsal",
+   "universal",
+   4525,
+   1.0
+  ],
+  [
+   "sauth",
+   "south",
+   4487,
+   1.0
+  ],
+  [
+   "jay",
+   "jai",
+   4485,
+   1.0
+  ],
+  [
+   "inovetiv",
+   "innovative",
+   4461,
+   1.0
+  ],
+  [
+   "yunaited",
+   "united",
+   4415,
+   1.0
+  ],
+  [
+   "payoniyar",
+   "pioneer",
+   4390,
+   1.0
+  ],
+  [
+   "van",
+   "one",
+   4321,
+   1.0
+  ],
+  [
+   "sadarn",
+   "southern",
+   4316,
+   1.0
+  ],
+  [
+   "bombe",
+   "bombay",
+   4303,
+   1.0
+  ],
+  [
+   "epeks",
+   "apex",
+   4289,
+   1.0
+  ],
+  [
+   "modarn",
+   "modern",
+   4174,
+   1.0
+  ],
+  [
+   "paraphekt",
+   "perfect",
+   4168,
+   1.0
+  ],
+  [
+   "goldan",
+   "golden",
+   4156,
+   1.0
+  ],
+  [
+   "sevan",
+   "seven",
+   4136,
+   1.0
+  ],
+  [
+   "hotal",
+   "hotel",
+   4068,
+   1.0
+  ],
+  [
+   "vijan",
+   "vision",
+   4059,
+   1.0
+  ],
+  [
+   "esaes",
+   "ss",
+   3980,
+   1.0
+  ],
+  [
+   "dayanamik",
+   "dynamic",
+   3963,
+   1.0
+  ],
+  [
+   "pharst",
+   "first",
+   3944,
+   1.0
+  ],
+  [
+   "sanaraij",
+   "sunrise",
+   3944,
+   1.0
+  ],
+  [
+   "phorcyun",
+   "fortune",
+   3861,
+   1.0
+  ],
+  [
+   "vhait",
+   "white",
+   3831,
+   1.0
+  ],
+  [
+   "krietiv",
+   "creative",
+   3814,
+   1.0
+  ],
+  [
+   "ol",
+   "all",
+   3720,
+   1.0
+  ],
+  [
+   "may",
+   "my",
+   3652,
+   1.0
+  ],
+  [
+   "sury",
+   "surya",
+   3592,
+   1.0
+  ],
+  [
+   "man",
+   "maa",
+   3565,
+   1.0
+  ],
+  [
+   "gaileksi",
+   "galaxy",
+   3456,
+   1.0
+  ],
+  [
+   "blaik",
+   "black",
+   3365,
+   1.0
+  ],
+  [
+   "krishn",
+   "krishna",
+   3208,
+   1.0
+  ],
+  [
+   "ker",
+   "care",
+   3091,
+   1.0
+  ],
+  [
+   "elelpi",
+   "llp",
+   2555,
+   1.0
+  ],
+  [
+   "lajistiks",
+   "logistics",
+   2505,
+   1.0
+  ],
+  [
+   "phainans",
+   "finance",
+   2490,
+   1.0
+  ],
+  [
+   "teknalajis",
+   "technologies",
+   2348,
+   1.0
+  ],
+  [
+   "teknalaji",
+   "technology",
+   2330,
+   1.0
+  ],
+  [
+   "intarneshanal",
+   "international",
+   2275,
+   1.0
+  ],
+  [
+   "indastris",
+   "industries",
+   2175,
+   1.0
+  ],
+  [
+   "ma",
+   "maa",
+   2112,
+   1.0
+  ],
+  [
+   "inpeks",
+   "impex",
+   2104,
+   1.0
+  ],
+  [
+   "mai",
+   "my",
+   2015,
+   1.0
+  ],
+  [
+   "sain",
+   "sai",
+   1799,
+   1.0
+  ],
+  [
+   "haspitaliti",
+   "hospitality",
+   1764,
+   1.0
+  ],
+  [
+   "al",
+   "all",
+   1754,
+   1.0
+  ],
+  [
+   "prapartis",
+   "properties",
+   1608,
+   1.0
+  ],
+  [
+   "prajekts",
+   "projects",
+   1478,
+   1.0
+  ],
+  [
+   "rayal",
+   "royal",
+   1188,
+   1.0
+  ],
+  [
+   "nart",
+   "north",
+   1166,
+   1.0
+  ],
+  [
+   "kulopal",
+   "global",
+   1165,
+   1.0
+  ],
+  [
+   "dainamik",
+   "dynamic",
+   1139,
+   1.0
+  ],
+  [
+   "intaranyashanal",
+   "international",
+   1100,
+   1.0
+  ],
+  [
+   "enjiniyaring",
+   "engineering",
+   1063,
+   1.0
+  ],
+  [
+   "apeks",
+   "apex",
+   1005,
+   1.0
+  ],
+  [
+   "vishan",
+   "vision",
+   1003,
+   1.0
+  ],
+  [
+   "eses",
+   "ss",
+   1002,
+   1.0
+  ],
+  [
+   "inaphra",
+   "infra",
+   954,
+   1.0
+  ],
+  [
+   "eksaportas",
+   "exports",
+   925,
+   1.0
+  ],
+  [
+   "shivan",
+   "shivam",
+   898,
+   1.0
+  ],
+  [
+   "madarn",
+   "modern",
+   879,
+   1.0
+  ],
+  [
+   "entarapraijes",
+   "enterprises",
+   873,
+   1.0
+  ],
+  [
+   "marketin",
+   "marketing",
+   872,
+   1.0
+  ],
+  [
+   "entarpiraicas",
+   "enterprises",
+   872,
+   1.0
+  ],
+  [
+   "tredin",
+   "trading",
+   861,
+   1.0
+  ],
+  [
+   "sayi",
+   "sai",
+   858,
+   1.0
+  ],
+  [
+   "pharcun",
+   "fortune",
+   849,
+   1.0
+  ],
+  [
+   "hpavunteshan",
+   "foundation",
+   847,
+   1.0
+  ],
+  [
+   "sarbhises",
+   "services",
+   842,
+   1.0
+  ],
+  [
+   "myanejament",
+   "management",
+   840,
+   1.0
+  ],
+  [
+   "sarvises",
+   "services",
+   835,
+   1.0
+  ],
+  [
+   "sarvisas",
+   "services",
+   835,
+   1.0
+  ],
+  [
+   "shiv",
+   "shiva",
+   833,
+   1.0
+  ],
+  [
+   "hputs",
+   "foods",
+   831,
+   1.0
+  ],
+  [
+   "hpainans",
+   "finance",
+   825,
+   1.0
+  ],
+  [
+   "teknolojis",
+   "technologies",
+   821,
+   1.0
+  ],
+  [
+   "injaniring",
+   "engineering",
+   816,
+   1.0
+  ],
+  [
+   "akro",
+   "agro",
+   816,
+   1.0
+  ],
+  [
+   "prodaktas",
+   "products",
+   811,
+   1.0
+  ],
+  [
+   "haspitalitti",
+   "hospitality",
+   810,
+   1.0
+  ],
+  [
+   "eksports",
+   "exports",
+   808,
+   1.0
+  ],
+  [
+   "kancalting",
+   "consulting",
+   808,
+   1.0
+  ],
+  [
+   "inaphotek",
+   "infotech",
+   805,
+   1.0
+  ],
+  [
+   "bisines",
+   "business",
+   805,
+   1.0
+  ],
+  [
+   "inyjiniyarin",
+   "engineering",
+   804,
+   1.0
+  ],
+  [
+   "kancaltanci",
+   "consultancy",
+   803,
+   1.0
+  ],
+  [
+   "picinas",
+   "business",
+   798,
+   1.0
+  ],
+  [
+   "puratakts",
+   "products",
+   792,
+   1.0
+  ],
+  [
+   "inhprastrakcar",
+   "infrastructure",
+   791,
+   1.0
+  ],
+  [
+   "inhpotek",
+   "infotech",
+   784,
+   1.0
+  ],
+  [
+   "cistams",
+   "systems",
+   783,
+   1.0
+  ],
+  [
+   "hput",
+   "food",
+   781,
+   1.0
+  ],
+  [
+   "kancaltants",
+   "consultants",
+   781,
+   1.0
+  ],
+  [
+   "sistemas",
+   "systems",
+   781,
+   1.0
+  ],
+  [
+   "helthaker",
+   "healthcare",
+   779,
+   1.0
+  ],
+  [
+   "venccars",
+   "ventures",
+   776,
+   1.0
+  ],
+  [
+   "purapparttis",
+   "properties",
+   774,
+   1.0
+  ],
+  [
+   "piltars",
+   "builders",
+   773,
+   1.0
+  ],
+  [
+   "carvicas",
+   "services",
+   769,
+   1.0
+  ],
+  [
+   "menejment",
+   "management",
+   769,
+   1.0
+  ],
+  [
+   "saphataoyyar",
+   "software",
+   768,
+   1.0
+  ],
+  [
+   "kanastrakashanas",
+   "constructions",
+   768,
+   1.0
+  ],
+  [
+   "bijines",
+   "business",
+   768,
+   1.0
+  ],
+  [
+   "kansaltants",
+   "consultants",
+   767,
+   1.0
+  ],
+  [
+   "vait",
+   "white",
+   764,
+   1.0
+  ],
+  [
+   "tevalappars",
+   "developers",
+   762,
+   1.0
+  ],
+  [
+   "kanasalatyantas",
+   "consultants",
+   759,
+   1.0
+  ],
+  [
+   "markketting",
+   "marketing",
+   756,
+   1.0
+  ],
+  [
+   "purotyucar",
+   "producer",
+   755,
+   1.0
+  ],
+  [
+   "colyushans",
+   "solutions",
+   753,
+   1.0
+  ],
+  [
+   "gyalaksi",
+   "galaxy",
+   748,
+   1.0
+  ],
+  [
+   "tireting",
+   "trading",
+   748,
+   1.0
+  ],
+  [
+   "kanasalatensi",
+   "consultancy",
+   746,
+   1.0
+  ],
+  [
+   "intastris",
+   "industries",
+   745,
+   1.0
+  ],
+  [
+   "mitiya",
+   "media",
+   741,
+   1.0
+  ],
+  [
+   "purajekts",
+   "projects",
+   736,
+   1.0
+  ],
+  [
+   "inhpra",
+   "infra",
+   736,
+   1.0
+  ],
+  [
+   "hasapitaliti",
+   "hospitality",
+   735,
+   1.0
+  ]
+ ]
+}
