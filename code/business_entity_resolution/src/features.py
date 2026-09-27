@@ -42,6 +42,11 @@ def load_attrs(split, sources, country):
     first_num = df.addr_numbers.str.split(" ", n=1).str[0]
     df["first_num"] = pd.to_numeric(first_num, errors="coerce").fillna(-1).astype(np.int64)
     df["n_words"] = df.name_core.str.count(" ").add(1).where(df.name_core != "", 0).astype(np.int16)
+    # initials of multi-word names: "chasse fils" -> "cf". Acronym names ("CF") are
+    # 1.5-1.8% of French S2/S3 records vs 0.1-0.5% in US/India; 0.17% of training
+    # pairs (~12.8k) are name <-> initials.
+    words = df.name_core.str.split()
+    df["initials"] = words.map(lambda w: "".join(x[0] for x in w) if len(w) >= 2 else "")
     df["name_freq"] = df.groupby("name_core").name_core.transform("size").astype(np.int32)
     return df
 
@@ -147,6 +152,11 @@ def _pair_block(c, s1_attr, cand_attr):
     f["first_word_eq"] = (A("first_word") == B("first_word")).astype(np.int8)
     f["name_exact"] = (A("name_core") == B("name_core")).astype(np.int8)
     f["words_diff"] = (A("n_words") - B("n_words")).astype(np.int16)
+    init_a, init_b, comp_a, comp_b = A("initials"), B("initials"), A("compact"), B("compact")
+    f["acronym"] = (((init_a != "") & (init_a == comp_b)) |
+                    ((init_b != "") & (init_b == comp_a))).astype(np.int8)
+    f["cand_short_name"] = ((B("n_words") <= 1) &
+                            (pd.Series(comp_b).str.len().to_numpy() <= 5)).astype(np.int8)
     f["s1_name_freq"] = A("name_freq")
     f["cand_name_freq"] = B("name_freq")
     f["cand_is_s3"] = (c.cand_id.to_numpy() >= ids.S3_OFFSET).astype(np.int8)
