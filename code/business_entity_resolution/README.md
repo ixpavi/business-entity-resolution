@@ -1,6 +1,7 @@
 # Business Entity Resolution — Amazon ML Challenge 2026
 
-Pipeline status: **data ingest and cleaning done**; blocking and matching next.
+Pipeline status: **end to end**. Cleaning → blocking → LightGBM matcher → submission.
+Local validation F0.5: baseline 0.8286, model 0.9661.
 
 ## Setup
 
@@ -21,11 +22,34 @@ Run every command from this folder (`code/business_entity_resolution`).
 | 0 | `python -m src.ingest` | dataset TSVs | `work/raw/*.parquet` | ~40 s |
 | 1 | `python -m src.build_lexicon` | `work/raw` (train only) | `src/resources/indic_lexicon.json` | ~30 s |
 | 2 | `python -m src.clean --workers 8` | `work/raw` | `work/clean/*.parquet` | ~2.5 min |
+| 3 | `python -m src.blocking --split train` then `--split test` | `work/clean` | `work/candidates/*.parquet` | ~12 + 10 min |
+| 4 | `python -m src.train --transfer` | candidates, clean | `work/models/lgbm.txt`, `decision.json` | ~20 min |
+| 5 | `python -m src.predict` | test candidates, model | `../../output/*.tsv` (validated) | ~20 min |
+| — | `python -m src.baseline` | candidates | baseline submission (no model) | ~10 min |
 | — | `python -m src.report_cleaning` | `work/raw`, `work/clean` | `work/reports/cleaning_report.md` | ~4 min |
 
 \*20-thread laptop, 24 GB RAM.
 
 Step 1's output is committed, so step 2 reproduces without re-running it.
+
+### 3. Blocking (`src/blocking.py`)
+Per country (no true pair crosses countries), each record becomes a TF-IDF vector
+of keys: `name_core` words, the name without spaces, `addr_norm` words, and
+house number + next word. Keys in more than 20,000 records are dropped. A top-30
+sparse product (`sparse_dot_topn`) gives each S1 entity its 30 most similar S2/S3
+records. On the full training set this keeps **96.2% (India) / 96.7% (US)** of
+true pairs, with 30 candidates per S1 entity out of 4–6M records per country.
+
+### 4–5. Matching (`src/features.py`, `src/train.py`, `src/predict.py`)
+33 features per candidate pair: competition context (rank of this S1 among all S1
+entities listing the same record, gap to the best other S1), rapidfuzz name and
+address similarities, house-number/state/legal-form agreement, and record flags.
+LightGBM (MIT) is trained on 9M pairs from 300k sampled training entities, with 20%
+of entities held out. Decision: each S2/S3 record goes to its most probable S1
+entity (every record matches at most one), kept if probability ≥ τ. τ = 0.75 is
+chosen on the held-out entities with the exact metric (`src/metrics.py`).
+Countries absent from training (France) use τ = 0.8625: trained on one country and
+scored on the other, the best τ rose to 0.90 (US→India) and 0.825 (India→US).
 
 ### 0. Ingest (`src/ingest.py`)
 A faithful TSV→parquet copy of all 7 files: no cleaning, every value kept as a
