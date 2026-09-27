@@ -50,38 +50,62 @@ def load_attrs(split, sources, country):
 # Context features (need the whole candidate table of a country)
 # --------------------------------------------------------------------------- #
 
+def group_rank_gap(keys, values):
+    """Within each key group: descending rank of each value, group size, and the
+    gap to the best OTHER member (value - max of the rest; value if alone)."""
+    order = np.lexsort((-values, keys))
+    k_sorted = keys[order]
+    start = np.r_[True, k_sorted[1:] != k_sorted[:-1]]
+    group_start = np.maximum.accumulate(np.where(start, np.arange(len(order)), 0))
+    rank = np.empty(len(order), np.int32)
+    rank[order] = np.arange(len(order)) - group_start + 1
+    group_id = np.cumsum(start) - 1
+    size = np.bincount(group_id)
+    v_sorted = values[order]
+    top1 = v_sorted[start]
+    second = np.minimum(np.flatnonzero(start) + 1, len(order) - 1)
+    top2 = np.where(size > 1, v_sorted[second], 0.0)
+    gid = np.empty(len(order), np.int64)
+    gid[order] = group_id
+    best_other = np.where(rank == 1, top2[gid], top1[gid])
+    return rank, size[gid].astype(np.int32), (values - best_other).astype(np.float32)
+
+
 def add_context(cands):
     """Add competition features in place. cands: s1_id, cand_id, score, rank."""
     score = cands.score.to_numpy()
-    cand = cands.cand_id.to_numpy()
     s1 = cands.s1_id.to_numpy()
 
     # per S2/S3 record: rank of this S1 among all S1 entities listing it
-    order = np.lexsort((-score, cand))
-    c_sorted = cand[order]
-    start = np.r_[True, c_sorted[1:] != c_sorted[:-1]]
-    group_start = np.maximum.accumulate(np.where(start, np.arange(len(order)), 0))
-    rec_rank = np.empty(len(order), np.int32)
-    rec_rank[order] = np.arange(len(order)) - group_start + 1
-    group_id = np.cumsum(start) - 1
-    group_size = np.bincount(group_id)
-    s_sorted = score[order]
-    top1 = s_sorted[start]
-    second_idx = np.flatnonzero(start) + 1
-    has_second = group_size > 1
-    top2 = np.where(has_second, s_sorted[np.minimum(second_idx, len(order) - 1)], 0.0)
-    gid = np.empty(len(order), np.int64)
-    gid[order] = group_id
-    best_other = np.where(rec_rank == 1, top2[gid], top1[gid])
-
-    cands["rec_rank"] = rec_rank
-    cands["rec_n"] = group_size[gid].astype(np.int32)
-    cands["rec_gap"] = (score - best_other).astype(np.float32)
+    cands["rec_rank"], cands["rec_n"], cands["rec_gap"] = group_rank_gap(
+        cands.cand_id.to_numpy(), score)
 
     # per S1 entity: score relative to its best candidate
     s1_top = pd.Series(score).groupby(s1).transform("max").to_numpy()
     cands["s1_rel"] = (score / s1_top).astype(np.float32)
     cands["s1_n"] = pd.Series(s1).groupby(s1).transform("size").to_numpy().astype(np.int16)
+    return cands
+
+
+PROB_CONTEXT = ["p1", "p1_rec_rank", "p1_rec_gap", "p1_rec_sum", "p1_s1_rank",
+                "p1_s1_rel", "p1_s1_n50"]
+
+
+def add_prob_context(cands, p1):
+    """Competition features recomputed from the first model's probabilities p1:
+    is this S1 entity the model's clear favourite for the record, and is the
+    record among this S1 entity's likely matches?"""
+    p1 = np.asarray(p1, np.float32)
+    cand = cands.cand_id.to_numpy()
+    s1 = cands.s1_id.to_numpy()
+    cands["p1"] = p1
+    cands["p1_rec_rank"], _, cands["p1_rec_gap"] = group_rank_gap(cand, p1)
+    cands["p1_rec_sum"] = pd.Series(p1).groupby(cand).transform("sum").to_numpy().astype(np.float32)
+    cands["p1_s1_rank"], _, _ = group_rank_gap(s1, p1)
+    s1_top = pd.Series(p1).groupby(s1).transform("max").to_numpy()
+    cands["p1_s1_rel"] = (p1 / np.maximum(s1_top, 1e-6)).astype(np.float32)
+    cands["p1_s1_n50"] = (pd.Series(p1 >= 0.5).groupby(s1).transform("sum")
+                          .to_numpy().astype(np.int16))
     return cands
 
 

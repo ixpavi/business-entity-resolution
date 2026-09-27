@@ -1,7 +1,7 @@
 # Business Entity Resolution — Amazon ML Challenge 2026
 
-Pipeline status: **end to end**. Cleaning → blocking → LightGBM matcher → submission.
-Local validation F0.5: baseline 0.8286, model 0.9661.
+Pipeline status: **end to end**. Cleaning → blocking → LightGBM matcher → reranker → submission.
+Local validation F0.5: baseline 0.8286, model 0.9661, model + reranker 0.9688.
 
 ## Setup
 
@@ -25,6 +25,8 @@ Run every command from this folder (`code/business_entity_resolution`).
 | 3 | `python -m src.blocking --split train` then `--split test` | `work/clean` | `work/candidates/*.parquet` | ~12 + 10 min |
 | 4 | `python -m src.train --transfer` | candidates, clean | `work/models/lgbm.txt`, `decision.json` | ~20 min |
 | 5 | `python -m src.predict` | test candidates, model | `../../output/*.tsv` (validated) | ~20 min |
+| 6 | `python -m src.rerank train` then `predict` | step 4 model, candidates | `lgbm_stage2.txt`; final `../../output/*.tsv` | ~30 + 30 min |
+| — | `python -m src.error_analysis` | step 4 model | `work/reports/error_analysis.md` | ~5 min |
 | — | `python -m src.baseline` | candidates | baseline submission (no model) | ~10 min |
 | — | `python -m src.report_cleaning` | `work/raw`, `work/clean` | `work/reports/cleaning_report.md` | ~4 min |
 
@@ -50,6 +52,16 @@ entity (every record matches at most one), kept if probability ≥ τ. τ = 0.75
 chosen on the held-out entities with the exact metric (`src/metrics.py`).
 Countries absent from training (France) use τ = 0.8625: trained on one country and
 scored on the other, the best τ rose to 0.90 (US→India) and 0.825 (India→US).
+
+### 6. Reranker (`src/rerank.py`)
+Error analysis (`src/error_analysis.py`) showed 35% of rejected true pairs have an
+empty S2/S3 address and an exact name, but compete with ~27 S1 entities of similar
+names at near-equal blocking scores. Stage 1 scores every candidate (66M training
+pairs); competition features are recomputed from its probabilities (is this S1 the
+model's clear favourite for the record?); a second LightGBM decides on stage-1
+features + those. Stage 2 trains on entities stage 1 never saw, so its inputs are
+out-of-sample as on test. Same held-out entities: stage 1 0.9670 → stage 2 0.9688.
+Thresholds: 0.675 (seen countries), 0.7875 for unseen (stage 1's +0.1125 margin).
 
 ### 0. Ingest (`src/ingest.py`)
 A faithful TSV→parquet copy of all 7 files: no cleaning, every value kept as a
