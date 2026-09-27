@@ -60,7 +60,7 @@ MAX_DF = 20_000   # keys in more records than this are dropped
 MIN_SCORE = 0.05  # candidates below this cosine are not kept
 CHUNK = 50_000    # Source 1 rows per matrix product
 GROUP_WEIGHTS = {"name": 1.0, "compact": 1.0, "addr": 1.0, "house": 1.0}
-CANDIDATE_DIR = config.WORK_DIR / "candidates"
+CANDIDATE_DIR = config.RUN_DIR / "candidates"
 
 
 # --------------------------------------------------------------------------- #
@@ -199,14 +199,15 @@ def top_k(A, B, k=TOP_K, min_score=MIN_SCORE, n_threads=None):
     return tuple(np.concatenate(x) for x in zip(*out))
 
 
-def block_country(split, country, s1_ids=None, k=TOP_K, max_df=MAX_DF, verbose=True):
+def block_country(split, country, s1_ids=None, k=TOP_K, max_df=MAX_DF, weights=None,
+                  verbose=True):
     """Candidates for one country: DataFrame of int64 s1_id, cand_id, score, rank."""
     t0 = time.time()
     s1 = load_records(split, ["source1"], country)
     if s1_ids is not None:
         s1 = s1.filter(pc.is_in(s1["entity_id"], value_set=pa.array(list(s1_ids))))
     cand = load_records(split, ["source2", "source3"], country)
-    A, B = build_matrices(s1, cand, max_df=max_df)
+    A, B = build_matrices(s1, cand, max_df=max_df, weights=weights)
     t1 = time.time()
     rows, cols, score, rank = top_k(A, B, k=k)
     cands = pd.DataFrame({
@@ -255,7 +256,10 @@ def main():
                              "and report recall instead of writing files")
     parser.add_argument("--k", type=int, default=TOP_K)
     parser.add_argument("--max-df", type=int, default=MAX_DF)
+    parser.add_argument("--trigram", type=float, default=0.0,
+                        help="weight of the name-trigram key group (0 = off)")
     args = parser.parse_args()
+    weights = {**GROUP_WEIGHTS, "trigram": args.trigram} if args.trigram else GROUP_WEIGHTS
 
     CANDIDATE_DIR.mkdir(parents=True, exist_ok=True)
     for country in countries(args.split):
@@ -266,7 +270,8 @@ def main():
         if args.sample:
             s1_ids = set(np.random.default_rng(0).choice(all_ids, min(args.sample, len(all_ids)),
                                                          replace=False))
-        cands = block_country(args.split, country, s1_ids, k=args.k, max_df=args.max_df)
+        cands = block_country(args.split, country, s1_ids, k=args.k, max_df=args.max_df,
+                              weights=weights)
         if args.split == "train":
             scored = list(s1_ids) if s1_ids is not None else all_ids
             recall, n_true = blocking_recall(cands, ids.encode(scored))

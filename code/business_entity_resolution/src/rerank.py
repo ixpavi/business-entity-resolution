@@ -114,7 +114,7 @@ def train_main(per_country, seed=1):
                 "tau_unseen": float(min(0.95, tau + shift)),
                 "best_iteration": model2.best_iteration}
     STAGE2_DECISION.write_text(json.dumps(decision, indent=1))
-    table.to_csv(config.REPORT_DIR / "stage2_tau.csv", index=False)
+    table.to_csv(MODEL_DIR / "stage2_tau.csv", index=False)
 
 
 def predict_main():

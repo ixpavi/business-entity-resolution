@@ -29,8 +29,8 @@ from src.blocking import candidate_path, countries, true_pairs
 from src.features import add_context, load_attrs, pair_features
 from src.metrics import per_entity_fbeta
 
-MODEL_DIR = config.WORK_DIR / "models"
-FEATURE_DIR = config.WORK_DIR / "features"
+MODEL_DIR = config.RUN_DIR / "models"
+FEATURE_DIR = config.RUN_DIR / "features"
 TAU_GRID = np.round(np.arange(0.10, 0.91, 0.025), 3)
 PARAMS = dict(objective="binary", learning_rate=0.05, num_leaves=127,
               min_data_in_leaf=200, feature_fraction=0.8, bagging_fraction=0.8,
@@ -148,7 +148,7 @@ def main():
     decision.update(unseen_country_tau(decision, sorted(data.country.unique())))
 
     (MODEL_DIR / "decision.json").write_text(json.dumps(decision, indent=1))
-    table.to_csv(config.REPORT_DIR / "model_tau.csv", index=False)
+    table.to_csv(MODEL_DIR / "model_tau.csv", index=False)
     return 0
 
 

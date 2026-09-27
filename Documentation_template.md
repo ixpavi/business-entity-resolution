@@ -1,8 +1,8 @@
 # ML Challenge 2026: Business Entity Resolution Solution Template
 
-**Team Name:** [Your Team Name]  
+**Team Name:** Team Yodha  
 **Team Members:** Pavitra Sharma, Naman, Lakshya, Pranav Kumar Maurya  
-**Submission Date:** [Date]
+**Submission Date:** 27 September 2026
 
 ---
 

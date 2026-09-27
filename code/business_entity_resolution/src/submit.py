@@ -11,7 +11,7 @@ import pyarrow.parquet as pq
 
 from src import config
 
-OUTPUT_DIR = config.WORK_DIR.parent / "output"
+OUTPUT_DIR = config.OUTPUT_DIR
 VALIDATOR = config.DATA_DIR.parent / "utils" / "validate_submission.py"
 
 
