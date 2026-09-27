@@ -3,6 +3,7 @@
 /*
 !/.gitignore
 !/README.md
+!/Documentation_template.md
 !/code/
 
 __pycache__/

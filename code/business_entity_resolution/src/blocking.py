@@ -27,6 +27,10 @@ Measured on 20k-entity samples per country against the full S2/S3 pool
 Tried and dropped: separate name-only / address-only searches (no gain at equal
 budget), one-deletion typo keys for name words (0.962 -> 0.886: the variants swamp
 the address keys), last-3-digit house-number keys (+0.1 pt India, -0.1 pt US).
+Name character trigrams ("trigram" group, off by default) at weight 0.3 / 0.5 / 1.0:
+India @30 0.9616 -> 0.9634 / 0.9652 / 0.9633, US 0.9685 -> 0.9690 / 0.9690 / 0.9615.
+About +0.17 pt recall overall for twice the blocking time and a full pipeline
+re-run, so not adopted.
 
 Usage:  python -m src.blocking --split train --sample 20000   (quick recall check)
         python -m src.blocking --split train                   (all, for training)
@@ -55,6 +59,7 @@ TOP_K = 30        # candidates kept per Source 1 entity
 MAX_DF = 20_000   # keys in more records than this are dropped
 MIN_SCORE = 0.05  # candidates below this cosine are not kept
 CHUNK = 50_000    # Source 1 rows per matrix product
+GROUP_WEIGHTS = {"name": 1.0, "compact": 1.0, "addr": 1.0, "house": 1.0}
 CANDIDATE_DIR = config.WORK_DIR / "candidates"
 
 
@@ -90,40 +95,65 @@ def _words(arr):
     return pc.list_parent_indices(lists).to_numpy(), pc.list_flatten(lists)
 
 
-def _key_groups(table):
-    """Yield (row_indices, keys) for every key group of a table, in a fixed order."""
-    name = table.column("name_core").combine_chunks()
-    rows, words = _words(name)
-    yield rows, words
+def _trigrams(strings):
+    """(row index, 3-character substring) for every position of every string."""
+    lens = pc.utf8_length(strings).to_numpy(zero_copy_only=False)
+    rows, grams = [], []
+    for i in range(max(0, int(lens.max(initial=0)) - 2)):
+        sel = lens >= i + 3
+        rows.append(np.flatnonzero(sel))
+        grams.append(pc.utf8_slice_codeunits(strings.filter(pa.array(sel)), i, i + 3)
+                     .cast(pa.large_string()))
+    if not rows:
+        return np.empty(0, np.int64), pa.array([], pa.large_string())
+    return np.concatenate(rows), pa.concat_arrays(grams)
 
+
+def _key_groups(table, groups):
+    """Yield (group, row_indices, keys) for each requested key group, in a fixed order."""
+    name = table.column("name_core").combine_chunks()
     compact = pc.replace_substring(name, " ", "")
-    keep = pc.greater_equal(pc.utf8_length(compact), 4).to_numpy(zero_copy_only=False)
-    yield np.flatnonzero(keep), compact.filter(pa.array(keep))
+    if "name" in groups:
+        yield ("name", *_words(name))
+    if "compact" in groups:
+        keep = pc.greater_equal(pc.utf8_length(compact), 4).to_numpy(zero_copy_only=False)
+        yield "compact", np.flatnonzero(keep), compact.filter(pa.array(keep))
+    if "trigram" in groups:  # typo-tolerant name keys: "robotics" -> rob, obo, bot, ...
+        yield ("trigram", *_trigrams(compact))
 
     addr = pc.replace_substring(table.column("addr_norm").combine_chunks(), ",", "")
     rows, words = _words(addr)
-    yield rows, words
+    if "addr" in groups:
+        yield "addr", rows, words
+    if "house" in groups:  # house number followed by the next word: "441_welshwood"
+        if len(words) > 1:
+            first, second = words.slice(0, len(words) - 1), words.slice(1)
+            sel = (rows[:-1] == rows[1:]) & pc.utf8_is_digit(first).to_numpy(zero_copy_only=False)
+            mask = pa.array(sel)
+            yield ("house", rows[:-1][sel],
+                   pc.binary_join_element_wise(first.filter(mask), second.filter(mask), "_"))
+        else:
+            yield "house", np.empty(0, np.int64), pa.array([], pa.string())
 
-    # house number followed by the next word of the same address: "441_welshwood"
-    if len(words) > 1:
-        first, second = words.slice(0, len(words) - 1), words.slice(1)
-        sel = (rows[:-1] == rows[1:]) & pc.utf8_is_digit(first).to_numpy(zero_copy_only=False)
-        mask = pa.array(sel)
-        yield rows[:-1][sel], pc.binary_join_element_wise(first.filter(mask), second.filter(mask), "_")
-    else:
-        yield np.empty(0, np.int64), pa.array([], pa.string())
 
+def build_matrices(s1, cand, max_df=MAX_DF, weights=None):
+    """TF-IDF matrices for Source 1 rows (A) and candidate rows (B), same columns.
 
-def build_matrices(s1, cand, max_df=MAX_DF):
-    """TF-IDF matrices for Source 1 rows (A) and candidate rows (B), same columns."""
+    weights: {group: multiplier} (default GROUP_WEIGHTS); a group's idf weights are
+    scaled by its multiplier, so a many-key group can be kept from swamping others.
+    """
+    weights = weights or GROUP_WEIGHTS
     r1, c1, r2, c2 = [], [], [], []
     offset = 0
-    for (rows1, keys1), (rows2, keys2) in zip(_key_groups(s1), _key_groups(cand)):
+    col_weight = []
+    for (group, rows1, keys1), (_, rows2, keys2) in zip(_key_groups(s1, weights),
+                                                        _key_groups(cand, weights)):
         enc = pc.dictionary_encode(pa.concat_arrays([keys1.cast(pa.large_string()),
                                                      keys2.cast(pa.large_string())]))
         codes = enc.indices.to_numpy().astype(np.int64) + offset
         r1.append(rows1); c1.append(codes[: len(keys1)])
         r2.append(rows2); c2.append(codes[len(keys1):])
+        col_weight.append(np.full(len(enc.dictionary), weights[group], np.float32))
         offset += len(enc.dictionary)
 
     def binary(rows, cols, n):
@@ -139,6 +169,7 @@ def build_matrices(s1, cand, max_df=MAX_DF):
     keep = (df > 0) & (df <= max_df)
     idf = np.zeros(offset, np.float32)
     idf[keep] = np.log(cand.num_rows / df[keep])
+    idf *= np.concatenate(col_weight)
 
     for m in (A, B):
         m.data *= idf[m.indices]

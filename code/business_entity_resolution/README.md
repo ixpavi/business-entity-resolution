@@ -26,6 +26,7 @@ Run every command from this folder (`code/business_entity_resolution`).
 | 4 | `python -m src.train --transfer` | candidates, clean | `work/models/lgbm.txt`, `decision.json` | ~20 min |
 | 5 | `python -m src.predict` | test candidates, model | `../../output/*.tsv` (validated) | ~20 min |
 | 6 | `python -m src.rerank train` then `predict` | step 4 model, candidates | `lgbm_stage2.txt`; final `../../output/*.tsv` | ~30 + 30 min |
+| 7 | `python -m src.package --team "<team name>"` | `../../output`, code, docs | `../../<team>_submission.zip` (validated) | ~2 min |
 | — | `python -m src.error_analysis` | step 4 model | `work/reports/error_analysis.md` | ~5 min |
 | — | `python -m src.baseline` | candidates | baseline submission (no model) | ~10 min |
 | — | `python -m src.report_cleaning` | `work/raw`, `work/clean` | `work/reports/cleaning_report.md` | ~4 min |
